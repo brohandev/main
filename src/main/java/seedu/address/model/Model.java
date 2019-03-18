@@ -155,6 +155,17 @@ public interface Model {
     void addPatient(Patient patient);
 
     /**
+     * Replaces the given patient {@code target} with {@code editedPatient}.
+     * {@code target} must exist in the address book.
+     * The identity of {@code editedPatient} must not be the same as
+     * another existing Patient in the address book.
+     */
+    void setPatient(Patient target, Patient editedWorker);
+
+    /** Returns an unmodifiable view of the filtered patient list */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /**
      * Updates the filter of the filtered Patient list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.

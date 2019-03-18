@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_HEALTHWORKER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_PATIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITIONS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
@@ -26,8 +28,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.healthworker.HealthWorker;
+import seedu.address.model.tag.ConditionTag;
 import seedu.address.model.tag.Specialisation;
 import seedu.address.testutil.EditHealthWorkerDescriptorBuilder;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditRequestDescriptorBuilder;
 
@@ -106,6 +110,22 @@ public class CommandTestUtil {
     public static final String SKILLS_DESC_ANDY = " " + PREFIX_SKILLS + Specialisation.GENERAL_PRACTICE.name()
             + " " + PREFIX_SKILLS + Specialisation.PHYSIOTHERAPY.name();
 
+    // Default descriptions for Patient objects
+    public static final String MODE_PATIENT = " " + PREFIX_ADD_PATIENT;
+    public static final String NAME_DESC_ALICE = " " + PREFIX_NAME + VALID_NAME_ALICE;
+    public static final String NAME_DESC_BENSON = " " + PREFIX_NAME + VALID_NAME_BENSON;
+    public static final String NRIC_DESC_ALICE = " " + PREFIX_NRIC + VALID_NRIC_ALICE;
+    public static final String NRIC_DESC_BENSON = " " + PREFIX_NRIC + VALID_NRIC_BENSON;
+    public static final String PHONE_DESC_ALICE = " " + PREFIX_PHONE + VALID_PHONE_ALICE;
+    public static final String PHONE_DESC_BENSON = " " + PREFIX_PHONE + VALID_PHONE_BENSON;
+    public static final String EMAIL_DESC_ALICE = " " + PREFIX_EMAIL + VALID_EMAIL_ALICE;
+    public static final String EMAIL_DESC_BENSON = " " + PREFIX_EMAIL + VALID_EMAIL_BENSON;
+    public static final String ADDRESS_DESC_ALICE = " " + PREFIX_ADDRESS + VALID_ADDRESS_ALICE;
+    public static final String ADDRESS_DESC_BENSON = " " + PREFIX_ADDRESS + VALID_ADDRESS_BENSON;
+    public static final String CONDITIONS_DESC_ALICE = " " + PREFIX_CONDITIONS +
+            new ConditionTag("Stroke").getName() + " " + PREFIX_CONDITIONS +
+            new ConditionTag("Dialysis").getName();
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -122,6 +142,8 @@ public class CommandTestUtil {
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
     public static final EditHealthWorkerCommand.EditHealthWorkerDescriptor DESC_ANDY;
     public static final EditHealthWorkerCommand.EditHealthWorkerDescriptor DESC_BETTY;
+    public static final EditPatientCommand.EditPatientDescriptor DESC_ALICE;
+    public static final EditPatientCommand.EditPatientDescriptor DESC_BENSON;
     public static final EditRequestCommand.EditRequestDescriptor REQ_DESC_ALICE;
     public static final EditRequestCommand.EditRequestDescriptor REQ_DESC_BOB;
 
@@ -150,6 +172,15 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BETTY).withEmail(VALID_EMAIL_BETTY).withAddress(VALID_ADDRESS_BETTY)
                 .withNric(VALID_NRIC_BETTY).withTags(VALID_TAG_FRIEND)
                 .withSkills(Specialisation.GENERAL_PRACTICE.name(), Specialisation.ORTHOPAEDIC.name()).build();
+        DESC_ALICE = new EditPatientDescriptorBuilder().withName(VALID_NAME_ALICE)
+                .withPhone(VALID_PHONE_ALICE).withEmail(VALID_EMAIL_ALICE).withAddress(VALID_ADDRESS_ALICE)
+                .withNric(VALID_NRIC_ALICE).withTags(VALID_TAG_FRIEND)
+                .withConditions(new ConditionTag("Dialysis").getName(),
+                        new ConditionTag("Cancer").getName()).build();
+        DESC_BENSON = new EditPatientDescriptorBuilder().withName(VALID_NAME_BENSON)
+                .withPhone(VALID_PHONE_BENSON).withEmail(VALID_EMAIL_BENSON).withAddress(VALID_ADDRESS_BENSON)
+                .withNric(VALID_NRIC_BENSON).withTags(VALID_TAG_HUSBAND)
+                .withConditions(new ConditionTag("Palliative").getName()).build();
     }
 
     /**

@@ -206,6 +206,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setPatient(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
+
+        this.versionedPatientBook.setPatient(target, editedPatient);
+    }
+
+    @Override
+    public ObservableList<Patient> getFilteredPatientList() {
+        return this.filteredPatients;
+    }
+
+    @Override
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         this.filteredPatients.setPredicate(predicate);
